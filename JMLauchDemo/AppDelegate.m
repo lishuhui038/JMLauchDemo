@@ -27,11 +27,14 @@
     //  1.初始化启动页广告
     [JMLaunchAdView initImageWithAttribute:3.0 showSkipType:JMSkipShowTypeAnimation setLaunchAd:^(JMLaunchAdView *launchAd) {
         __block JMLaunchAdView *weakSelf = launchAd;
+       
         //如果选择 SkipShowTypeAnimation 需要设置动画跳过按钮的属性
         [weakSelf setAnimationSkipWithAttribute:[UIColor yellowColor] lineWidth:3.0 backgroundColor:[UIColor grayColor] textColor:[UIColor blueColor]];
+       
         [launchAd setWebImageWithURL:@"http://seopic.699pic.com/photo/50162/6115.jpg_wh1200.jpg" options:JMWebImageDefault result:^(UIImage *image, NSURL *url) {
             //  2.异步加载图片完成回调(设置图片尺寸)
             weakSelf.launchAdViewFrame = CGRectMake(0, 0, kScreen_Width, kScreen_Height);
+            
         } adClickBlock:^{
             //  3.点击广告回调
             [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://www.baidu.com"] options:@{} completionHandler:nil];
